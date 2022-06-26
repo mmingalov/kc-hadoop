@@ -21,12 +21,12 @@ def perform_reduce():
         if current_word == word:
             current_count += count
         else:
-            if current_word:
+            if current_word: #проверка на непустое
                 print('%s\t%s' % (current_word, current_count))
             current_count = count
             current_word = word
 
-    if current_word == word:
+    if current_word == word: #не потерять последнее слово, которое придет
         print('%s\t%s' % (current_word, current_count))
 
 

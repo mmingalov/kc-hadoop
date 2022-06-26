@@ -1,14 +1,25 @@
-export MR_OUTPUT=/user/root/output-data
+#скопируем данные s3 на наш hadoop кластер самым правильным образом — используя `distcp`
+hadoop fs -mkdir 2020
+hadoop distcp \
+-Dfs.s3a.endpoint=s3.amazonaws.com \
+-Dfs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider \
+s3a://nyc-tlc/csv_backup/yellow_tripdata_2020* 2020/
 
+#можем проверить содержимое какого-нибудь файла
+hadoop fs -text 2020/yellow_tripdata_2020-10.csv | head -n 10
+
+
+export MR_OUTPUT=/user/root/output-data
 hadoop fs -rm -r $MR_OUTPUT
 
-
 hadoop jar "$HADOOP_MAPRED_HOME"/hadoop-streaming.jar \
--Dmapred.job.name='Simple streaming job reduce' \
+-Dmapred.job.name='REPORT -- Tips average amount by Months and Payment types' \
 -Dmapred.reduce.tasks=1 \
 -file /tmp/mapreduce/mapper.py -mapper /tmp/mapreduce/mapper.py \
 -file /tmp/mapreduce/reducer.py -reducer /tmp/mapreduce/reducer.py \
--input /user/root/input-data -output $MR_OUTPUT
+-input /user/root/2020 -output $MR_OUTPUT
+
+hadoop fs -text output-data/part-00000
 
 # -Dmapred.reduce.tasks=1 \
 #-Dmapreduce.input.lineinputformat.linespermap=1000 \
@@ -35,6 +46,3 @@ hadoop jar "$HADOOP_MAPRED_HOME"/hadoop-streaming.jar \
 #-file /tmp/mapreduce/mapper.py -mapper /tmp/mapreduce/mapper.py \
 #-file /tmp/mapreduce/reducer.py -reducer /tmp/mapreduce/reducer.py \
 #-input /user/root/2019  -output taxi-output
-
-#проверим содержимое файла
-#hadoop fs -text output-data/part-00000 | head -n 5

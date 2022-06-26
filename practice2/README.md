@@ -20,9 +20,9 @@
   ```  
 ## Разберем исходный код mapper и reducer
 ## Запустим код
-* Скопируем код на кластер
+* Скопируем код на кластер предварительно создав нужную директорию (__mkdir /tmp/mapreduce__)
   ```shell
-  scp ./*.py root@84.201.188.76:/tmp/mapreduce/ && scp ./run.sh root@84.201.188.76:/tmp/mapreduce/
+  scp ./*.py root@84.201.184.133:/tmp/mapreduce/ && scp ./run.sh root@84.201.184.133:/tmp/mapreduce/
   ```
 * Запустим код
   ```shell
