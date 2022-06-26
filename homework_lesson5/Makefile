@@ -1,4 +1,4 @@
-#скопируем наш код на кластер
+#copying our code to cluster
 copy:
 	scp ./*.py root@51.250.48.241:/tmp/mapreduce/ && scp ./run.sh root@51.250.48.241:/tmp/mapreduce/
 

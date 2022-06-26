@@ -1,21 +1,20 @@
 # MapReduce
 
-## Подготовка
+## Preparing
 
-1. Создать S3 бакет (Object Storage)
-2. Скопировать данные желтого такси за 2020 год в созданный s3 бакет (см. [практика №1](../practice1/README.md))
+1. to create S3 bucket (Object Storage)
+2. to copy yellow taxi data for 2020 into s3 bucket
 
-## Задание
+## Task
 
-Написать map-reduce приложение, использующее скопированные на Object storage данные и вычисляющее отчет на каждый месяц
-2020 года вида:
+Write map-reduce application, using data from Object storage and create report:
 
 | Payment type | Month   | Tips average amount |
 |--------------|---------|---------------------|
 | Cash         | 2020-01 | 999.99              |
 
-### Требования к отчету
+### Requirements
 
-1. кол-во файлов - 1
-2. формат - csv
-3. сортировка - `Month` по возрастанию, `Payment type` по возрастанию
+1. number of files - 1
+2. format - csv
+3. sorting - `Month` Ascending, `Payment type` Ascending

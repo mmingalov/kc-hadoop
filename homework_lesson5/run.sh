@@ -1,11 +1,11 @@
-#скопируем данные s3 на наш hadoop кластер самым правильным образом — используя `distcp`
+#copying data from s3 to our cluster using `distcp`
 hadoop fs -mkdir 2020
 hadoop distcp \
 -Dfs.s3a.endpoint=s3.amazonaws.com \
 -Dfs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider \
 s3a://nyc-tlc/csv_backup/yellow_tripdata_2020* 2020/
 
-#можем проверить содержимое какого-нибудь файла
+#checking content
 hadoop fs -text 2020/yellow_tripdata_2020-10.csv | head -n 10
 
 
