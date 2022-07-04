@@ -9,6 +9,7 @@ s3a://nyc-tlc/csv_backup/yellow_tripdata_2020* 2020/
 hadoop fs -text 2020/yellow_tripdata_2020-10.csv | head -n 10
 
 
+
 export MR_OUTPUT=/user/root/output-data
 hadoop fs -rm -r $MR_OUTPUT
 
